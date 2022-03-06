@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ToDoListProject.Models.ToDoTask>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<table class="table">
+    
+    <thead>
+        <tr>
+            <th class="col-8">Task:</th>
+            <th class="col-1 pl-0">Priority:</th>
+            <th class="col-1 pl-0">Status:</th>
+            <th class="col-1"></th>
+            <th class="col-1"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr class="@item.Priority">
+
+            <td class="col-8 border-top-0">
+                <input asp-action="Edit" asp-route-id="@item.Id" type="text" class="form-control w-100" value="@item.Description" />
+            </td>
+
+            <td class="col-1 pl-0 border-top-0">
+                <select asp-action="Edit" asp-route-id="@item.Id" class="form-control">
+                    <option value="High">   High                   </option>
+                    <option value="Normal"> Normal                 </option>
+                    <option value="Low">    Low                    </option>
+                    <option hidden disabled selected>@item.Priority</option>
+                </select>
+            </td>
+
+            <td class="col-1 pl-0 border-top-0">
+                <select asp-action="Edit" asp-route-id="@item.Id" class="form-control">
+                    <option value="Incomplete">  Incomplete         </option>
+                    <option value="In Progress"> In Progress        </option>
+                    <option value="Completed">   Completed          </option>
+                    <option hidden disabled selected>@item.Status</option>
+                </select>
+            </td>
+
+            <td class="col-1 pl-0 border-top-0">
+                <a asp-action="Edit" asp-route-id="@item.Id"   class="btn btn-outline-dark btn-light fill-area">Edit</a>
+            </td>
+            <td class="col-1 pl-0 border-top-0">
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-dark btn-light fill-area">Remove</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-outline-dark btn-primary">Add Task</a>

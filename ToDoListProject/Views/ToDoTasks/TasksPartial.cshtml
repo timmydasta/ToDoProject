@@ -1,0 +1,9 @@
+﻿@model IEnumerable<ToDoListProject.Models.ToDoTask>
+
+<partial name="TasksPartial" />
+
+<script>console.log("TasksPartial")</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
